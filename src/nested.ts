@@ -82,13 +82,14 @@ export function publishAll(questions: Question[]): Question[] {
  * you defined in the `objects.ts` file.
  * Hint: as usual, do not modify the input questions array
  */
+import { makeBlankQuestion } from "./objects";
 export function addNewQuestion(
     questions: Question[],
     id: number,
     name: string,
     type: QuestionType,
 ): Question[] {
-    return [];
+    return [...questions, makeBlankQuestion(id, name, type)];
 }
 
 /***
@@ -103,7 +104,9 @@ export function renameQuestionById(
     targetId: number,
     newName: string,
 ): Question[] {
-    return [];
+    return questions.map((q) =>
+        q.id === targetId ? { ...q, name: newName } : q,
+    );
 }
 
 /**
@@ -124,5 +127,16 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    return questions.map((q) => {
+        if (q.id !== targetId) return q;
+
+        const newOptions =
+            targetOptionIndex === -1 ?
+                [...q.options, newOption]
+            :   q.options.map((opt, i) =>
+                    i === targetOptionIndex ? newOption : opt,
+                );
+
+        return { ...q, options: newOptions };
+    });
 }
