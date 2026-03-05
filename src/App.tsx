@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "./App.css";
+
 import { ChangeType } from "./components/ChangeType";
 import { RevealAnswer } from "./components/RevealAnswer";
 import { TwoDice } from "./components/TwoDice";
@@ -10,16 +11,38 @@ function App(): React.JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
-                UM COS420 with React Hooks and TypeScript
+                <h1>UM COS420 with React Hooks and TypeScript</h1>
             </header>
-            <hr></hr>
-            <Counter></Counter>
+
+            <img src="../images/my_dog.jpg" alt="My dog" />
+
+            <ul>
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>Bootstrap</li>
+            </ul>
+
+            <Button
+                onClick={() => {
+                    console.log("Hello World!");
+                }}
+            >
+                Log Hello World
+            </Button>
+
+            <div style={{ backgroundColor: "red" }}>Red Background</div>
+
             <hr />
-            <RevealAnswer></RevealAnswer>
+            <Counter />
+
             <hr />
-            <TwoDice></TwoDice>
+            <RevealAnswer />
+
             <hr />
-            <ChangeType></ChangeType>
+            <TwoDice />
+
+            <hr />
+            <ChangeType />
         </div>
     );
 }
